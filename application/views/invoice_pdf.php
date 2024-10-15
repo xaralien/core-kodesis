@@ -232,8 +232,8 @@
                 <td colspan="3" style="border: 0px; vertical-align: bottom">
                     <p>
                         Pembayaran Transfer ke: <br>
-                        Bank BCA 375-0999009 <br>
-                        PT. PERDANA PRESTIGE MAKMUR
+                        Bank BCA 3753002304<br>
+                        Kode Sistem Indonesia
                     </p>
                 </td>
                 <td colspan="2" style="border: 0px; text-align: center;">
