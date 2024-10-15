@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
-	<title>Andara Office | Business Development</title>
+	<title>Kodesis | Business Development</title>
 	<!-- Bootstrap -->
 	<link href="<?php echo base_url(); ?>src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Font Awesome -->
@@ -105,7 +105,7 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="<?php echo base_url(); ?>" class="site_title"><img src="<?php echo base_url(); ?>img/boc_logo.png" alt="..." height="42" width="60"><span> Andara Office</span></a>
+						<a href="<?php echo base_url(); ?>" class="site_title"><img src="<?php echo base_url(); ?>img/logo-kodesis.png" alt="..." height="42" width="60"><span> Kodesis</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -624,17 +624,17 @@
 						title: 'Oops...',
 						text: 'Error Input!',
 					}) <?php
-						$this->session->unset_userdata('msg');
-					} else if ($this->session->userdata('msg_memo')) {
-						?>
+							$this->session->unset_userdata('msg');
+						} else if ($this->session->userdata('msg_memo')) {
+							?>
 					Swal.fire({
 						icon: 'success',
 						title: 'Success input',
 						text: 'Create & Send Success to ID <?php echo $this->session->userdata('msg_memo') ?>',
 					});
 				<?php
-						$this->session->unset_userdata('msg_memo');
-					} ?>
+							$this->session->unset_userdata('msg_memo');
+						} ?>
 				$("#submit-memo").on('click', function(e) {
 					if (!confirm('Are you sure that you want to submit the form')) {
 						event.preventDefault();

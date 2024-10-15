@@ -18,7 +18,7 @@
 
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-  <title>Andara Office | Business Development</title>
+  <title>Kodesis | Business Development</title>
 
   <!-- Bootstrap -->
 
@@ -225,7 +225,7 @@
 
           <div class="navbar nav_title" style="border: 0;">
 
-            <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>img/boc_logo.png" alt="..." height="42" width="60"><span> Andara Office</span></a>
+            <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>img/logo-kodesis.png" alt="..." height="42" width="60"><span> Kodesis</span></a>
 
           </div>
 

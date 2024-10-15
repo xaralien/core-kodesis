@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
-    <title>Andara Office Communication <?= (isset($title)) ? "| " . $title : '' ?></title>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>src/images/logo_andara.png" /><!-- Bootstrap -->
+    <title>Kodesis <?= (isset($title)) ? "| " . $title : '' ?></title>
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>img/logo-kodesis.png" /><!-- Bootstrap -->
     <link href="<?= base_url(); ?>src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?= base_url(); ?>src/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -137,7 +137,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>src/images/logo_andara.png" alt="..." height="42" width="60">Andara Office</a>
+                        <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>img/logo-kodesis.png" alt="..." height="42" width="60">Kodesis</a>
                     </div>
 
                     <div class="clearfix"></div>

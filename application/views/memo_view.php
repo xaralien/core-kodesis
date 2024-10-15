@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
-	<title>Andara Office | Business Development</title>
+	<title>Kodesis | Business Development</title>
 	<!-- Bootstrap -->
 	<link href="<?php echo base_url(); ?>src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Font Awesome -->
@@ -113,7 +113,7 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="<?php echo base_url(); ?>" class="site_title"><img src="<?php echo base_url(); ?>img/boc_logo.png" alt="..." height="42" width="60"><span> Andara Office</span></a>
+						<a href="<?php echo base_url(); ?>" class="site_title"><img src="<?php echo base_url(); ?>img/logo-kodesis.png" alt="..." height="42" width="60"><span> Kodesis</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -255,8 +255,7 @@
 
 				<div class="x_panel card">
 					<strong>
-						<font style="color:blue;font-size:24px;">Andara</font>
-						<font style="color:green;font-size:24px;">Office</font>
+						<font style="color:blue;font-size:24px;">Kodesis</font>
 					</strong></br>
 					<!--<font style="font-size:17px;">PT. Lohjinawi Agritama International</font></br></br>-->
 
@@ -264,11 +263,11 @@
 						<font style="font-size:17px;">
 							E-MEMO INTERN</br>
 							No. <?php
-								$array_bln = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
-								$bln = $array_bln[date('n', strtotime($memo->tanggal))];
+									$array_bln = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+									$bln = $array_bln[date('n', strtotime($memo->tanggal))];
 
-								echo sprintf("%03d", $memo->nomor_memo) . '/E-MEMO/' . $memo->kode_nama . '/' . $bln . '/' . date('Y', strtotime($memo->tanggal));
-								?>
+									echo sprintf("%03d", $memo->nomor_memo) . '/E-MEMO/' . $memo->kode_nama . '/' . $bln . '/' . date('Y', strtotime($memo->tanggal));
+									?>
 							<hr />
 						</font>
 					</div>
@@ -337,7 +336,7 @@
 						<table>
 							<tr>
 								<td width="80%">Jakarta, <?php $date = $memo->tanggal;
-															echo $newDate = date("d F Y", strtotime($date)); ?></td>
+																					echo $newDate = date("d F Y", strtotime($date)); ?></td>
 								<td></td>
 							</tr>
 							<!--tr>

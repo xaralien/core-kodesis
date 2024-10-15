@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
-  <title>Andara Office | Business Development</title>
+  <title>Kodesis | Business Development</title>
   <!-- Bootstrap -->
   <link href="<?= base_url(); ?>src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -119,7 +119,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>img/boc_logo.png" alt="..." height="42" width="60"><span> Andara Office</span></a>
+            <a href="<?= base_url(); ?>" class="site_title"><img src="<?= base_url(); ?>img/logo-kodesis.png" alt="..." height="42" width="60"><span> Kodesis</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -874,7 +874,7 @@
                           $item = $this->cb->get_where('t_pengajuan_detail', ['no_pengajuan' => $detail['no_pengajuan']])->result_array();
                           $total_realisasi = 0;
                           foreach ($item as $i) {
-                              $total_realisasi += $i['realisasi'];
+                            $total_realisasi += $i['realisasi'];
                           ?>
                             <input type="hidden" class="form-control" name="row_item[]" id="row<?= $i['Id'] ?>">
                             <input type="hidden" class="form-control" name="id_item[]" id="id_item<?= $i['Id'] ?>" value="<?= $i['Id'] ?>">
@@ -939,8 +939,8 @@
                           <tr>
                             <td><b>Lampiran</b></td>
                             <td colspan="5">
-                                <a href="<?= base_url('upload/pengajuan/' . $detail['bukti_pengajuan']) ?>" class="btn btn-success btn-sm" target="_blank">Lampiran Pengajuan</a>
-                                <a href="<?= base_url('upload/pengajuan/' . $detail['bukti_bayar']) ?>" class="btn btn-success btn-sm" target="_blank">Bukti Bayar</a>
+                              <a href="<?= base_url('upload/pengajuan/' . $detail['bukti_pengajuan']) ?>" class="btn btn-success btn-sm" target="_blank">Lampiran Pengajuan</a>
+                              <a href="<?= base_url('upload/pengajuan/' . $detail['bukti_bayar']) ?>" class="btn btn-success btn-sm" target="_blank">Bukti Bayar</a>
                             </td>
                           </tr>
                           <tr>

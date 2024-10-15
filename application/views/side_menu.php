@@ -70,7 +70,6 @@
 					<?php $a = $this->session->userdata('level');
 					if (strpos($a, '501') !== false) { ?>
 						<li><a href="<?php echo base_url(); ?>app/asset_list">Asset List</a></li>
-						<li><a href="<?php echo base_url(); ?>asset/item_list">Item List</a></li>
 					<?php } ?>
 					<!-- <?php $a = $this->session->userdata('level');
 								if (strpos($a, '501') !== false) { ?>
@@ -85,7 +84,7 @@
 		<?php } ?>
 		<?php $a = $this->session->userdata('level');
 		if (strpos($a, '10') !== false) { ?>
-			<li>
+			<!-- <li>
 				<a><i class="fa fa-edit"></i>Queue<span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<?php $a = $this->session->userdata('level');
@@ -101,11 +100,11 @@
 						<li><a href="<?php echo base_url(); ?>app/antrian_monitor">Queue Monitor </a></li>
 					<?php } ?>
 				</ul>
-			</li>
+			</li> -->
 		<?php } ?>
 		<?php $a = $this->session->userdata('level');
 		if (strpos($a, '20') !== false) { ?>
-			<li>
+			<!-- <li>
 				<a><i class="fa fa-edit"></i>Mit-E<span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<?php $a = $this->session->userdata('level');
@@ -121,7 +120,7 @@
 						<li><a href="<?php echo base_url(); ?>app/">Report</a></li>
 					<?php } ?>
 				</ul>
-			</li>
+			</li> -->
 		<?php } ?>
 		<?php $a = $this->session->userdata('level');
 		if (strpos($a, '30') !== false) { ?>

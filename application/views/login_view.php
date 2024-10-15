@@ -12,7 +12,7 @@
 
    <!--===============================================================================================-->
 
-   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>src/images/logo_andara.png" />
+   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>img/logo-kodesis.png" />
 
    <!--===============================================================================================-->
 
@@ -66,7 +66,7 @@
 
             <span class="login100-form-title p-b-41">
 
-               <img src="<?php echo base_url(); ?>src/images/logo_andara.png" alt="..." width="150" height="100">
+               <img src="<?php echo base_url(); ?>img/logo-kodesis.png" alt="..." width="150" height="100">
 
             </span>
 

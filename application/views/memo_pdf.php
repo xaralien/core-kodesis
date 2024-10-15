@@ -25,8 +25,7 @@
 
 		<div class="x_panel card">
 			<strong>
-				<font style="color:blue;font-size:24px;">Andara</font>
-				<font style="color:green;font-size:24px;">Office</font>
+				<font style="color:blue;font-size:24px;">Kodesis</font>
 			</strong>
 			<br>
 			<!--<font style="font-size:17px;">PT. Lohjinawi Agritama International</font>-->
@@ -35,11 +34,11 @@
 				<font style="font-size:17px;">
 					E-MEMO INTERN<br>
 					No. <?php
-						$array_bln = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
-						$bln = $array_bln[date('n', strtotime($memo->tanggal))];
+							$array_bln = array(1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+							$bln = $array_bln[date('n', strtotime($memo->tanggal))];
 
-						echo sprintf("%03d", $memo->nomor_memo) . '/E-MEMO/' . $memo->kode_nama . '/' . $bln . '/' . date('Y', strtotime($memo->tanggal));
-						?>
+							echo sprintf("%03d", $memo->nomor_memo) . '/E-MEMO/' . $memo->kode_nama . '/' . $bln . '/' . date('Y', strtotime($memo->tanggal));
+							?>
 					<hr />
 				</font>
 			</div>
@@ -105,9 +104,9 @@
 				</div>
 				<div style="margin-top: 25px;">
 					<span>Jakarta, <?php
-									$date = $memo->tanggal;
-									echo $newDate = date("d F Y", strtotime($date));
-									?></span>
+													$date = $memo->tanggal;
+													echo $newDate = date("d F Y", strtotime($date));
+													?></span>
 				</div>
 				<?php if (!empty($memo->attach)) { ?>
 					<div>

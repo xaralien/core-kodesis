@@ -553,7 +553,7 @@ class App extends CI_Controller
 					//Send notif wa
 					$nama_session = $this->session->userdata('nama');
 					$subject_memo = $this->input->post('subject_memo');
-					$msg = "There's a new Memo\nAOC From : *$nama_session*\nSubject :  *$subject_memo*";
+					$msg = "There's a new Memo\nKOC From : *$nama_session*\nSubject :  *$subject_memo*";
 
 					if (!empty($this->input->post('cc_memo[]'))) {
 						$phone_user = array_merge($phone, $phone_cc);
