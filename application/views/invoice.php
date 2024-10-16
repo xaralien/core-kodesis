@@ -82,6 +82,10 @@
             text-align: left;
             /* Pastikan opsi dropdown rata kiri */
         }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -375,7 +379,7 @@
                                                                                         <div class="col-sm-12 col-xs-12">
                                                                                             <div class="form-group">
                                                                                                 <label for="keterangan" class="form-label">Keterangan</label>
-                                                                                                <textarea name="keterangan" id="keterangan" class="form-control" oninput="this.value = this.value.toUpperCase()" required></textarea>
+                                                                                                <textarea name="keterangan" id="keterangan" class="form-control uppercase" required></textarea>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -407,7 +411,7 @@
                                                                                         <div class="col-sm-12 col-xs-12">
                                                                                             <div class="form-group">
                                                                                                 <label for="keterangan" class="form-label">Keterangan</label>
-                                                                                                <textarea name="keterangan" id="keterangan" class="form-control" oninput="this.value = this.value.toUpperCase()" required></textarea>
+                                                                                                <textarea name="keterangan" id="keterangan" class="form-control uppercase" required></textarea>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

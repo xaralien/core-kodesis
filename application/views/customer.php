@@ -82,6 +82,10 @@
             text-align: left;
             /* Pastikan opsi dropdown rata kiri */
         }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -364,7 +368,7 @@
                             <div class="form-group row">
                                 <div class="col-md-12 col-xs-12">
                                     <label for="nama_customer" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" name="nama_customer" placeholder="Masukkan nama customer..." oninput="this.value = this.value.toUpperCase()">
+                                    <input type="text" class="form-control uppercase" name="nama_customer" placeholder="Masukkan nama customer...">
                                 </div>
                             </div>
                             <div class="form-group row">

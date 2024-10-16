@@ -61,6 +61,10 @@
         tr.baris>td>input.form-control {
             font-size: 11px;
         }
+
+        input.uppercase {
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -307,7 +311,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label for="keterangan" class="form-label">Notes</label>
-                                            <input name="keterangan" id="keterangan" class="form-control" oninput="this.value = this.value.toUpperCase()" placeholder="Enter notes here..." required>
+                                            <input name="keterangan" id="keterangan" class="form-control uppercase" placeholder="Enter notes here..." required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -374,7 +378,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="coa_persediaan" class="form-label">CoA Persediaan</label>
+                                            <label for="coa_persediaan" class="form-label">CoA Lawan</label>
                                             <select name="coa_persediaan" id="coa_persediaan" class="form-control select2" style="width: 100%" required>
                                                 <option value="">:: Pilih CoA Persediaan</option>
                                                 <?php
@@ -411,7 +415,7 @@
                                             <tr>
                                                 <th>Tgl.</th>
                                                 <th>Ket.</th>
-                                                <th>Jumlah</th>
+                                                <th>Nominal</th>
                                                 <th>Biaya</th>
                                                 <th>Amount</th>
                                                 <th>Del.</th>
@@ -423,7 +427,7 @@
                                                     <input type="date" name="item_date[]" id="item_date[]" class="form-control">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="item[]" oninput="this.value = this.value.toUpperCase()">
+                                                    <input type="text" class="form-control uppercase" name="item[]">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control total" name="total[]" value="0">

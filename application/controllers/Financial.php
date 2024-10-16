@@ -478,6 +478,7 @@ class Financial extends CI_Controller
 
         // run dompdf
         $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+        // $this->load->view('invoice_pdf', $data);
     }
 
     public function autocomplete()
