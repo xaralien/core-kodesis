@@ -65,8 +65,8 @@
     <table style="margin-bottom: 30px; width: 100%">
         <tbody>
             <tr>
-                <td style="width: 150px;">
-                    <img src="<?= base_url(); ?>img/logo-kodesis.png" style="width: 150px;" alt="">
+                <td style="width: 110px;">
+                    <img src="<?= base_url(); ?>img/logo-kodesis.png" style="width: 100px;" alt="">
                 </td>
                 <td>PT. Kode Sistem Indonesia<br>Jalan bukit cinere D/186 RT 04 RW 02 Kec. Cinere Kab. Depok<br>0896-2555-1238</td>
                 <td style="text-align: right; vertical-align:middle">Invoice No. : <?= $invoice['no_invoice'] ?>/KSI/<?= intToRoman($month) ?>/<?= $year ?></td>

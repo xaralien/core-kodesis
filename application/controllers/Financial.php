@@ -319,7 +319,7 @@ class Financial extends CI_Controller
                     $detail_data[] = [
                         'id_invoice' => $id_invoice,
                         'item_date' => $item_date,
-                        'item' => $item,
+                        'item' => strtoupper($item),
                         'flight_number' => $flight_number,
                         'destination' => $destination,
                         'qty' => $qty,
@@ -344,7 +344,7 @@ class Financial extends CI_Controller
                     $detail_data[] = [
                         'id_invoice' => $id_invoice,
                         'item_date' => $item_date,
-                        'item' => $item,
+                        'item' => strtoupper($item),
                         'total' => $total,
                         'biaya' => $biaya,
                         'total_amount' => $total_amount,
