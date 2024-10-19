@@ -273,7 +273,7 @@
                                                     foreach ($activa as $a) :
                                                         $coa = $this->m_coa->getCoa($a->no_sbb);
 
-                                                        if ($coa['table_source'] == "t_coa_sbb" && $coa['posisi'] == 'AKTIVA' && $a->saldo_awal != '0') : ?>
+                                                        if ($coa['table_source'] == "t_coa_sbb" && $coa['posisi'] == 'AKTIVA' && $a->saldo_awal != '0.00') : ?>
                                                             <tr>
                                                                 <td><?= $a->no_sbb ?></td>
                                                                 <td><?= $coa['nama_perkiraan'] ?></td>
@@ -310,7 +310,7 @@
                                                     foreach ($pasiva as $a) :
                                                         $coa = $this->m_coa->getCoa($a->no_sbb);
 
-                                                        if ($coa['table_source'] == "t_coa_sbb" && $coa['posisi'] == 'PASIVA' && $a->saldo_awal != '0') : ?>
+                                                        if ($coa['table_source'] == "t_coa_sbb" && $coa['posisi'] == 'PASIVA' && $a->saldo_awal != '0.00') : ?>
                                                             <tr>
                                                                 <td><?= $a->no_sbb ?></td>
                                                                 <td><?= $coa['nama_perkiraan'] ?></td>

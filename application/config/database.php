@@ -97,6 +97,10 @@ $db['default'] = array(
 
 $db['corebank'] = array(
 	'dsn'	=> '',
+	// 'hostname' => 'localhost',
+	// 'username' => 'root',
+	// 'password' => '',
+	// 'database' => 'corebank',
 	'hostname' => 'kodesis.id',
 	'username' => 'kodesisi_admin',
 	'password' => 'admin123!@#',

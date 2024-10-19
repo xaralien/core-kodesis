@@ -474,28 +474,28 @@ class Financial extends CI_Controller
         $tanggal_bayar = $this->input->post('tanggal_bayar');
 
         $nominal_j2 = $inv['subtotal'] - $inv['besaran_pph'];
-
-
         // kalau tidak 
 
         // J1: PAD berkurang sebesar nominal pendapatan, Pendapatan bertambah sebesar nominal pendapatan
         $j1_coa_debit = $inv['coa_kredit'];
         $j1_coa_kredit = $coa_kredit;
-        print_r($inv['coa_kredit']);
-        exit;
         $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['nominal_pendapatan'], $tanggal_bayar);
-
-        // J2: Kas/Bank bertambah sebesar ppn, ppn keluaran bertambah sebesar ppn keluaran
-        if ($inv['besaran_ppn'] !== '0.00') {
-            $j1_coa_debit = $coa_debit;
-            $j1_coa_kredit = "23011";
-            $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['besaran_ppn'], $tanggal_bayar);
-        }
 
         // J3: Kas/Bank bertambah sebesar nominal bayar, piutang usaha keluaran berkurang sebesar nominal bayar
         $j1_coa_debit = $coa_debit;
         $j1_coa_kredit = $inv['coa_debit'];
-        $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['subtotal'], $tanggal_bayar);
+        $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $nominal_bayar, $tanggal_bayar);
+
+        // J2: Kas/Bank bertambah sebesar ppn, ppn keluaran bertambah sebesar ppn keluaran
+        if ($inv['besaran_ppn'] !== '0.00') {
+            $j1_coa_debit = $inv['coa_debit'];
+            $j1_coa_kredit = "23011";
+            $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['besaran_ppn'], $tanggal_bayar);
+
+            $j2_coa_debit = $inv['coa_kredit'];
+            $j2_coa_kredit = $inv['coa_debit'];
+            $this->posting($j2_coa_debit, $j2_coa_kredit, $keterangan, $inv['besaran_ppn'], $tanggal_bayar);
+        }
 
         if ($inv['opsi_pph23'] == '1') {
             // J4: Kas/Bank bertambah sebesar pph, utang pph 23 bertambah sebesar pph

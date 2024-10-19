@@ -218,7 +218,7 @@
                         <div class="x_panel card">
 
                             <div class="x_title">
-                                <h2>Neraca per tanggal <?= format_indo($per_tanggal) ?> </h2>
+                                <h2>Laba rugi per tanggal <?= format_indo($per_tanggal) ?> </h2>
                             </div>
                             <div class="x_content">
                                 <div class="row">
@@ -271,8 +271,7 @@
                                                 foreach ($pendapatan as $a) :
                                                     $coa = $this->m_coa->getCoa($a->no_sbb);
 
-                                                    if ($coa['table_source'] == "t_coalr_sbb" && $coa['posisi'] == 'PASIVA') {
-                                                ?>
+                                                    if ($coa['table_source'] == "t_coalr_sbb" && $coa['posisi'] == 'PASIVA' && $a->saldo_awal != '0.00') { ?>
                                                         <tr>
                                                             <td><?= $a->no_sbb ?></td>
                                                             <td><?= $coa['nama_perkiraan'] ?></td>
@@ -300,7 +299,7 @@
                                                 foreach ($biaya as $a) :
                                                     $coa = $this->m_coa->getCoa($a->no_sbb);
 
-                                                    if ($coa['table_source'] == "t_coalr_sbb" && $coa['posisi'] == 'AKTIVA') {
+                                                    if ($coa['table_source'] == "t_coalr_sbb" && $coa['posisi'] == 'AKTIVA' && $a->saldo_awal != '0.00') {
                                                 ?>
                                                         <tr>
                                                             <td><?= $a->no_sbb ?></td>
