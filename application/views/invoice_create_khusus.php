@@ -368,7 +368,7 @@
                                                 <?php
                                                 foreach ($pendapatan as $pd) :
                                                 ?>
-                                                    <option value="<?= $pd->no_sbb ?>"><?= $pd->nama_perkiraan ?></option>
+                                                    <option value="<?= $pd->no_sbb ?>"><?= $pd->no_sbb . ' - ' . $pd->nama_perkiraan ?></option>
                                                 <?php
                                                 endforeach; ?>
                                             </select>
@@ -380,7 +380,7 @@
                                                 <?php
                                                 foreach ($persediaan as $ps) :
                                                 ?>
-                                                    <option value="<?= $ps->no_sbb ?>"><?= $ps->nama_perkiraan ?></option>
+                                                    <option value="<?= $ps->no_sbb ?>"><?= $ps->no_sbb . ' - ' . $ps->nama_perkiraan ?></option>
                                                 <?php
                                                 endforeach; ?>
                                             </select>

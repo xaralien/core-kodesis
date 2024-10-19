@@ -203,8 +203,8 @@ class Financial extends CI_Controller
             'title' => 'Create Invoice',
             'no_invoice' => $no_inv,
             'customers' => $this->M_Customer->list_customer('khusus'),
-            'pendapatan' => $this->m_coa->getCoaByCode(),
-            'persediaan' => $this->m_coa->getCoaByCode(),
+            'pendapatan' => $this->m_coa->getCoaByCode('1'),
+            'persediaan' => $this->m_coa->getCoaByCode('4'),
             'count_inbox' => $result,
             'count_inbox2' => $result2,
         ];
