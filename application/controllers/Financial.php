@@ -167,8 +167,8 @@ class Financial extends CI_Controller
             'title' => 'Create Invoice',
             'no_invoice' => $no_inv,
             'customers' => $this->M_Customer->list_customer('reguler'),
-            'pendapatan' => $this->m_coa->getCoaByCode('410'),
-            'persediaan' => $this->m_coa->getCoaByCode(),
+            'pendapatan' => $this->m_coa->getCoaByCode('4'),
+            'persediaan' => $this->m_coa->getCoaByCode('1'),
             'count_inbox' => $result,
             'count_inbox2' => $result2,
         ];
@@ -203,7 +203,7 @@ class Financial extends CI_Controller
             'title' => 'Create Invoice',
             'no_invoice' => $no_inv,
             'customers' => $this->M_Customer->list_customer('khusus'),
-            'pendapatan' => $this->m_coa->getCoaByCode('410'),
+            'pendapatan' => $this->m_coa->getCoaByCode(),
             'persediaan' => $this->m_coa->getCoaByCode(),
             'count_inbox' => $result,
             'count_inbox2' => $result2,
@@ -221,23 +221,20 @@ class Financial extends CI_Controller
         $besaran_diskon = $this->convertToNumber(($this->input->post('besaran_diskon')) ? $this->input->post('besaran_diskon') : '0');
         $besaran_ppn = $this->convertToNumber($this->input->post('besaran_ppn'));
         $besaran_pph = $this->convertToNumber($this->input->post('besaran_pph'));
-        $total_biaya = $this->convertToNumber($this->input->post('total_biaya'));
+        // $total_biaya = $this->convertToNumber($this->input->post('total_biaya'));
         $total_chargeable = $this->convertToNumber($this->input->post('total_chargeable'));
         $total_nonpph = $this->convertToNumber($this->input->post('total_nonpph'));
         $total_denganpph = $this->convertToNumber($this->input->post('total_denganpph'));
         $nominal_pendapatan = $this->convertToNumber($this->input->post('nominal_pendapatan'));
 
-
-        // print_r($nominal_pendapatan);
-        // exit;
         $no_inv = $this->input->post('no_invoice');
 
         // $status_pendapatan = $this->input->post('status_pendapatan');
         $opsi_termin = $this->input->post('opsi_termin');
         $opsi_pph = $this->input->post('opsi_pph');
         $opsi_ppn = $this->input->post('opsi_ppn');
-        $coa_pendapatan = $this->input->post('coa_pendapatan');
-        $coa_persediaan = $this->input->post('coa_persediaan');
+        $coa_debit = $this->input->post('coa_debit');
+        $coa_kredit = $this->input->post('coa_kredit');
 
 
         $pph = isset($opsi_pph) ? '0.02' : 0;
@@ -271,9 +268,8 @@ class Financial extends CI_Controller
             'besaran_pph' => $besaran_pph,
             'total_nonpph' => $total_nonpph,
             'total_denganpph' => $total_denganpph,
-            'coa_pendapatan' => $coa_pendapatan,
-            'coa_persediaan' => $coa_persediaan,
-            'total_biaya' => $total_biaya,
+            'coa_debit' => $coa_debit,
+            'coa_kredit' => $coa_kredit,
             'total_chargeable' => $total_chargeable,
             'nominal_pendapatan' => $nominal_pendapatan,
             'jenis_invoice' => $jenis_invoice,
@@ -282,98 +278,59 @@ class Financial extends CI_Controller
             'status_pendapatan' => '1'
         ];
 
+        $this->db->trans_begin();
         $id_invoice = $this->m_invoice->insert($invoice_data);
 
+        if (!$id_invoice) {
+            $this->db->trans_rollback();
+            $this->session->set_flashdata('message_name', 'Failed to create invoice.');
+            redirect("financial/invoice");
+        }
+
         $items = $this->input->post('item');
-        $item_dates = $this->input->post('item_date');
-        $biayas = $this->input->post('biaya');
+        $jumlahs = $this->input->post('jumlah');
         $totals = $this->input->post('total');
         $total_amounts = $this->input->post('total_amount');
 
         $detail_data = [];
 
         if (is_array($items)) {
-            if ($jenis == "reguler") {
-                $flight_numbers = $this->input->post('flight_number');
-                $destinations = $this->input->post('destination');
-                $qtys = $this->input->post('qty');
-                $actual_weights = $this->input->post('actual_weight');
-                $chargeable_weights = $this->input->post('chargeable_weight');
-                $hargas = $this->input->post('harga');
-                $awb_fees = $this->input->post('awb_fee');
 
-                for ($i = 0; $i < count($items); $i++) {
-                    $item = trim($items[$i]);
-                    $item_date = $item_dates[$i];
-                    $flight_number = trim($flight_numbers[$i]);
-                    $destination = trim($destinations[$i]);
-                    $qty = $this->convertToNumber($qtys[$i]);
-                    $actual_weight = $this->convertToNumber($actual_weights[$i]);
-                    $chargeable_weight = $this->convertToNumber($chargeable_weights[$i]);
-                    $harga = $this->convertToNumber($hargas[$i]);
-                    $biaya = $this->convertToNumber($biayas[$i]);
-                    $total = $this->convertToNumber($totals[$i]);
-                    $awb_fee = $this->convertToNumber($awb_fees[$i]);
-                    $total_amount = $this->convertToNumber($total_amounts[$i]);
+            for ($i = 0; $i < count($items); $i++) {
+                $item = trim($items[$i]);
+                $total = $this->convertToNumber($totals[$i]);
+                $jumlah = $this->convertToNumber($jumlahs[$i]);
+                $total_amount = $this->convertToNumber($total_amounts[$i]);
 
-                    $detail_data[] = [
-                        'id_invoice' => $id_invoice,
-                        'item_date' => $item_date,
-                        'item' => strtoupper($item),
-                        'flight_number' => $flight_number,
-                        'destination' => $destination,
-                        'qty' => $qty,
-                        'actual_weight' => $actual_weight,
-                        'chargeable_weight' => $chargeable_weight,
-                        'harga' => $harga,
-                        'total' => $total,
-                        'biaya' => $biaya,
-                        'awb_fee' => $awb_fee,
-                        'total_amount' => $total_amount,
-                        'created_by' => $id_user
-                    ];
-                }
-            } else if ($jenis == "khusus") {
-                for ($i = 0; $i < count($items); $i++) {
-                    $item = trim($items[$i]);
-                    $item_date = $item_dates[$i];
-                    $total = $this->convertToNumber($totals[$i]);
-                    $biaya = $this->convertToNumber($biayas[$i]);
-                    $total_amount = $this->convertToNumber($total_amounts[$i]);
-
-                    $detail_data[] = [
-                        'id_invoice' => $id_invoice,
-                        'item_date' => $item_date,
-                        'item' => strtoupper($item),
-                        'total' => $total,
-                        'biaya' => $biaya,
-                        'total_amount' => $total_amount,
-                        'created_by' => $id_user
-                    ];
-                }
+                $detail_data[] = [
+                    'id_invoice' => $id_invoice,
+                    'item' => strtoupper($item),
+                    'total' => $total,
+                    'qty' => $jumlah,
+                    'total_amount' => $total_amount,
+                    'created_by' => $id_user
+                ];
             }
 
             if (!empty($detail_data)) {
                 $insert = $this->m_invoice->insert_batch($detail_data);
 
-                if ($insert) {
-                    // update 11 Juni 2024 jam 17:07
-                    // Jurnal 1: 13010 - Piutang Usaha bertambah (dari total_biaya), Persediaan (sesuai pilihan) berkurang sebesar total_biaya
-                    $coa_debit = ($jenis == "khusus") ? "20509" : "13010";
-                    $coa_kredit = $coa_persediaan;
-
-                    $this->posting($coa_debit, $coa_kredit, $keterangan, $total_biaya, $tgl_invoice);
-
-                    // Jurnal 2: 13010 - Piutang Usaha bertambah (pendapatan), 41101 - PAD-Operasional Lainnya bertambah sebesar pendapatan
-                    $coa_debit = "13010";
-                    $coa_kredit = "41101";
-
-                    $this->posting($coa_debit, $coa_kredit, $keterangan, $nominal_pendapatan, $tgl_invoice);
-
-                    $this->session->set_flashdata('message_name', 'The invoice has been successfully created. ' . $no_inv);
-                    // After that you need to used redirect function instead of load view such as 
+                if ($insert === FALSE) {
+                    $this->db->trans_rollback();
+                    $this->session->set_flashdata('message_name', 'Failed to insert invoice details.');
                     redirect("financial/invoice");
                 }
+
+                // Pastikan fungsi posting tidak mengganggu transaksi
+                $this->posting($coa_debit, $coa_kredit, $keterangan, $total_denganpph, $tgl_invoice);
+
+                $this->db->trans_commit();
+                $this->session->set_flashdata('message_name', 'The invoice has been successfully created. ' . $no_inv);
+                redirect("financial/invoice");
+            } else {
+                $this->db->trans_rollback();
+                $this->session->set_flashdata('message_name', 'Invoice detail data is empty.');
+                redirect("financial/invoice");
             }
         }
     }
@@ -400,6 +357,9 @@ class Financial extends CI_Controller
         } else if ($kredit['posisi'] == "PASIVA") {
             $saldo_kredit_baru = $kredit['nominal'] + $nominal;
         }
+
+        // print_r($saldo_kredit_baru);
+        // exit;
 
         // cek tabel
         if ($substr_coa_debit == "1" || $substr_coa_debit == "2" || $substr_coa_debit == "3") {
@@ -501,36 +461,45 @@ class Financial extends CI_Controller
 
     public function paid()
     {
+        // print_r($_POST);
+        // exit;
         $no_inv = $this->uri->segment(3);
 
         $inv =  $this->m_invoice->show($no_inv);
-        $coa_kas = $this->input->post('no_coa');
+        $coa_debit = $this->input->post('coa_debit');
+        $coa_kredit = $this->input->post('coa_kredit');
         $nominal_bayar = $this->convertToNumber(($this->input->post('nominal_bayar')));
         $keterangan = $this->input->post('keterangan');
         $status_bayar = $this->input->post('status_bayar');
         $tanggal_bayar = $this->input->post('tanggal_bayar');
-        $coa_pendapatan = $inv['coa_pendapatan'];
 
         $nominal_j2 = $inv['subtotal'] - $inv['besaran_pph'];
 
+
+        // kalau tidak 
+
         // J1: PAD berkurang sebesar nominal pendapatan, Pendapatan bertambah sebesar nominal pendapatan
-        $j1_coa_debit = "41101";
-        $j1_coa_kredit = $coa_pendapatan;
+        $j1_coa_debit = $inv['coa_kredit'];
+        $j1_coa_kredit = $coa_kredit;
+        print_r($inv['coa_kredit']);
+        exit;
         $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['nominal_pendapatan'], $tanggal_bayar);
 
         // J2: Kas/Bank bertambah sebesar ppn, ppn keluaran bertambah sebesar ppn keluaran
-        $j1_coa_debit = $coa_kas;
-        $j1_coa_kredit = "23011";
-        $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['besaran_ppn'], $tanggal_bayar);
+        if ($inv['besaran_ppn'] !== '0.00') {
+            $j1_coa_debit = $coa_debit;
+            $j1_coa_kredit = "23011";
+            $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['besaran_ppn'], $tanggal_bayar);
+        }
 
         // J3: Kas/Bank bertambah sebesar nominal bayar, piutang usaha keluaran berkurang sebesar nominal bayar
-        $j1_coa_debit = $coa_kas;
-        $j1_coa_kredit = "13010";
-        $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $nominal_j2, $tanggal_bayar);
+        $j1_coa_debit = $coa_debit;
+        $j1_coa_kredit = $inv['coa_debit'];
+        $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['subtotal'], $tanggal_bayar);
 
-        if ($inv['opsi_pph23'] != '1') {
+        if ($inv['opsi_pph23'] == '1') {
             // J4: Kas/Bank bertambah sebesar pph, utang pph 23 bertambah sebesar pph
-            $j1_coa_debit = $coa_kas;
+            $j1_coa_debit = $coa_debit;
             $j1_coa_kredit = "23014";
             $this->posting($j1_coa_debit, $j1_coa_kredit, $keterangan, $inv['besaran_pph'], $tanggal_bayar);
         }

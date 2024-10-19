@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="../img/logo-kodesis.png" type="image/ico" />
     <title>Kodesis | Business Development</title>
     <!-- Bootstrap -->
     <link href="<?= base_url(); ?>src/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -355,10 +355,6 @@
                                             <input type="text" class="form-control" name="total_basic_rate" id="total_basic_rate" value="0" readonly>
                                         </div> -->
                                         <div class="col-md-2 col-xs-12">
-                                            <label for="total_biaya" class="form-label">Total biaya</label>
-                                            <input type="text" class="form-control" name="total_biaya" id="total_biaya" value="0" readonly>
-                                        </div>
-                                        <div class="col-md-2 col-xs-12">
                                             <label for="nominal_bayar" class="form-label">Nominal bayar</label>
                                             <input type="text" class="form-control" name="nominal_bayar" id="nominal_bayar" value="0" readonly>
                                         </div>
@@ -366,9 +362,9 @@
                                     <div class="form-group row">
 
                                         <div class="col-md-3">
-                                            <label for="coa_pendapatan" class="form-label">CoA Pendapatan</label>
-                                            <select name="coa_pendapatan" id="coa_pendapatan" class="form-control select2" style="width: 100%" required>
-                                                <option value="">:: Pilih CoA Pendapatan</option>
+                                            <label for="coa_debit" class="form-label">CoA Debit</label>
+                                            <select name="coa_debit" id="coa_debit" class="form-control select2" style="width: 100%" required>
+                                                <option value="">:: Pilih CoA Debit</option>
                                                 <?php
                                                 foreach ($pendapatan as $pd) :
                                                 ?>
@@ -378,9 +374,9 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="coa_persediaan" class="form-label">CoA Lawan</label>
-                                            <select name="coa_persediaan" id="coa_persediaan" class="form-control select2" style="width: 100%" required>
-                                                <option value="">:: Pilih CoA Persediaan</option>
+                                            <label for="coa_kredit" class="form-label">CoA Kredit</label>
+                                            <select name="coa_kredit" id="coa_kredit" class="form-control select2" style="width: 100%" required>
+                                                <option value="">:: Pilih CoA Kredit</option>
                                                 <?php
                                                 foreach ($persediaan as $ps) :
                                                 ?>
@@ -413,10 +409,9 @@
                                     <table class="table mt-5 table-responsive">
                                         <thead>
                                             <tr>
-                                                <th>Tgl.</th>
-                                                <th>Ket.</th>
+                                                <th>Keterangan</th>
+                                                <th>Jumlah</th>
                                                 <th>Nominal</th>
-                                                <th>Biaya</th>
                                                 <th>Amount</th>
                                                 <th>Del.</th>
                                             </tr>
@@ -424,16 +419,13 @@
                                         <tbody>
                                             <tr class="baris">
                                                 <td>
-                                                    <input type="date" name="item_date[]" id="item_date[]" class="form-control">
-                                                </td>
-                                                <td>
                                                     <input type="text" class="form-control uppercase" name="item[]">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control total" name="total[]" value="0">
+                                                    <input type="text" class="form-control" name="jumlah[]" value="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="biaya[]" value="0">
+                                                    <input type="text" class="form-control total" name="total[]" value="0">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" name="total_amount[]" value="0" readonly>
@@ -615,7 +607,7 @@
                 // Kosongkan nilai input di baris baru
                 newRow.find('input').val('');
                 newRow.find('input[name="total[]"]').val('0');
-                newRow.find('input[name="biaya[]"]').val('0');
+                newRow.find('input[name="jumlah[]"]').val('0');
                 newRow.find('input[name="total_amount[]"]').val('0');
 
                 // Perbarui tag <h4> pada baris baru dengan nomor urut yang baru
@@ -626,8 +618,8 @@
             });
 
             // Saat input qty atau harga diubah
-            // $(document).on('input', 'input[name="chargeable_weight[]"], input[name="harga[]"], input[name="awb_fee[]"], input[name="biaya[]"]', function() {
-            $(document).on('input', 'input[name="biaya[]"], input[name="total[]"]', function() {
+            // $(document).on('input', 'input[name="chargeable_weight[]"], input[name="harga[]"], input[name="awb_fee[]"], input[name="jumlah[]"]', function() {
+            $(document).on('input', 'input[name="jumlah[]"], input[name="total[]"]', function() {
                 var value = $(this).val();
                 var formattedValue = parseFloat(value.split('.').join(''));
                 $(this).val(formattedValue);
@@ -639,7 +631,7 @@
             });
 
             // Tambahkan event listener untuk event keyup
-            $(document).on('keyup', 'input[name="biaya[]"], input[name="total[]"]', function() {
+            $(document).on('keyup', 'input[name="jumlah[]"], input[name="total[]"]', function() {
                 var value = $(this).val().trim(); // Hapus spasi di awal dan akhir nilai
                 var formattedValue = formatNumber(parseFloat(value.split('.').join('')));
                 $(this).val(formattedValue);
@@ -654,15 +646,15 @@
 
             function hitungTotal(row) {
                 var total = row.find('input[name="total[]"]').val().replace(/\./g, '');
-                var biaya = row.find('input[name="biaya[]"]').val().replace(/\./g, '');
+                var jumlah = row.find('input[name="jumlah[]"]').val().replace(/\./g, '');
 
                 total = parseInt(total); // Ubah string ke angka float
-                biaya = parseInt(biaya); // Ubah string ke angka float
+                jumlah = parseInt(jumlah); // Ubah string ke angka float
 
                 total = isNaN(total) ? 0 : total;
-                biaya = isNaN(biaya) ? 0 : biaya;
+                jumlah = isNaN(jumlah) ? 0 : jumlah;
 
-                var total_amount = total - biaya;
+                var total_amount = total * jumlah;
 
                 row.find('input[name="total_amount[]"]').val(formatNumber(total_amount));
                 updateTotalBelanja();
@@ -670,23 +662,16 @@
 
             function updateTotalBelanja() {
                 var total_pos_fix = 0;
-                var total_biaya = 0;
+
                 $(".baris").each(function() {
                     var total = $(this).find('input[name="total_amount[]"]').val().replace(/\./g, ''); // Ambil nilai total dari setiap baris
-                    var biaya = $(this).find('input[name="biaya[]"]').val().replace(/\./g, ''); // Ambil nilai total dari setiap baris
                     total = parseFloat(total); // Ubah string ke angka float
-                    biaya = parseFloat(biaya); // Ubah string ke angka float
+
                     if (!isNaN(total)) { // Pastikan total adalah angka
                         total_pos_fix += total; // Tambahkan nilai total ke total_pos_fix
                     }
-                    if (!isNaN(biaya)) { // Pastikan total adalah angka
-                        total_biaya += biaya; // Tambahkan nilai total ke total_pos_fix
-                    }
-
-
                 });
                 $('#nominal').val(formatNumber(total_pos_fix)); // Atur nilai input #total_basic_rate dengan total_basic_rate
-                $('#total_biaya').val(formatNumber(total_biaya)); // Atur nilai input #total_biaya dengan total_biaya
             }
 
             // Tambahkan event listener untuk tombol hapus row
@@ -718,9 +703,7 @@
                 var pph = 0.02;
                 // var opsi_pph = document.getElementById("opsi_pph").value;
                 var besaranpph = parseFloat($('#besaran_pph').val());
-                var biaya = parseFloat($('#total_biaya').val().replace(/\./g, ''));
 
-                console.log(biaya)
                 var subtotal = 0;
                 // Hitung subtotal dari total setiap baris
                 $('.baris').each(function() {

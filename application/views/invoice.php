@@ -329,28 +329,34 @@
                                                                             <form action="<?= base_url('financial/paid/' . $i['no_invoice']) ?>" method="post">
                                                                                 <div class="modal-body">
                                                                                     <div class="row">
-                                                                                        <div class="col-sm-4 col-xs-12">
+                                                                                        <div class="col-sm-6 col-xs-12">
                                                                                             <div class="form-group">
                                                                                                 <label for="nominal_invoice" class="form-label">Nominal Invoice</label>
                                                                                                 <input type="text" name="nominal_invoice" id="nominal_invoice<?= $i['Id'] ?>" class="form-control" value="<?= number_format($i['total_denganpph']) ?>" readonly>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-4 col-xs-12">
+                                                                                        <div class="col-sm-6 col-xs-12">
                                                                                             <div class="form-group">
                                                                                                 <label for="piutang" class="form-label">Belum bayar</label>
                                                                                                 <input type="text" name="piutang" id="piutang<?= $i['Id'] ?>" class="form-control" value="<?= number_format($piutang) ?>" readonly>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-4 col-xs-12">
+                                                                                        <div class="col-sm-6 col-xs-12">
                                                                                             <div class="form-group">
                                                                                                 <label for="nominal_bayar" class="form-label">Nominal bayar</label>
                                                                                                 <input type="text" name="nominal_bayar" id="nominal_bayar<?= $i['Id'] ?>" class="form-control" value="<?= number_format(($i['opsi_termin'] == 0) ? $piutang : '0', 0, ',', '.') ?>" <?= ($i['opsi_termin'] == 0) ? 'readonly' : '' ?> required>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-8 col-xs-12">
+                                                                                        <div class="col-sm-6 col-xs-12">
                                                                                             <div class="form-group">
-                                                                                                <label for="no_coa" class="form-label">CoA Kas</label>
-                                                                                                <select name="no_coa" id="no_coa<?= $i['Id'] ?>" class="form-control" required>
+                                                                                                <label for="tanggal_bayar" class="form-label">Tanggal bayar</label>
+                                                                                                <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 col-xs-12">
+                                                                                            <div class="form-group">
+                                                                                                <label for="coa_debit" class="form-label">CoA Debit</label>
+                                                                                                <select name="coa_debit" id="coa_debit<?= $i['Id'] ?>" class="form-control" required>
                                                                                                     <option value="">:: Pilih CoA Kas</option>
                                                                                                     <?php
                                                                                                     foreach ($coa_kas as $c) :
@@ -361,10 +367,18 @@
                                                                                                 </select>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-4 col-xs-12">
+                                                                                        <div class="col-sm-6 col-xs-12">
                                                                                             <div class="form-group">
-                                                                                                <label for="tanggal_bayar" class="form-label">Tanggal bayar</label>
-                                                                                                <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control">
+                                                                                                <label for="coa_kredit" class="form-label">CoA Kredit</label>
+                                                                                                <select name="coa_kredit" id="coa_kredit<?= $i['Id'] ?>" class="form-control" required>
+                                                                                                    <option value="">:: Pilih CoA Kas</option>
+                                                                                                    <?php
+                                                                                                    foreach ($coa_pendapatan as $c) :
+                                                                                                    ?>
+                                                                                                        <option value="<?= $c->no_sbb ?>"><?= $c->no_sbb . ' - ' . $c->nama_perkiraan ?></option>
+                                                                                                    <?php
+                                                                                                    endforeach; ?>
+                                                                                                </select>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-2 col-xs-12">
