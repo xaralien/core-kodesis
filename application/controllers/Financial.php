@@ -59,6 +59,11 @@ class Financial extends CI_Controller
         $coa_debit = $this->input->post('neraca_debit');
         $coa_kredit = $this->input->post('neraca_kredit');
 
+        if ($coa_debit == $coa_kredit) {
+            $this->session->set_flashdata('message_error', 'CoA Debit dan Kredit tidak boleh sama');
+            redirect('financial/financial_entry');
+        }
+
         $nominal = preg_replace('/[^a-zA-Z0-9\']/', '', $this->input->post('input_nominal'));
         $keterangan = trim($this->input->post('input_keterangan'));
         $tanggal = $this->input->post('tanggal');
