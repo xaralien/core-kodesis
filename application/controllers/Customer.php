@@ -47,7 +47,7 @@ class Customer extends CI_Controller
 		$slug = url_title($nama_customer, 'dash', true);
 
 		$data = [
-			'nama_customer' => $nama_customer,
+			'nama_customer' => strtoupper($nama_customer),
 			'alamat_customer' => $this->input->post('alamat_customer'),
 			'telepon_customer' => $this->input->post('telepon_customer'),
 			'status_customer' => $this->input->post('status_customer'),
