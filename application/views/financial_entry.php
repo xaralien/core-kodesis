@@ -507,7 +507,17 @@
                                 </h2>
 
                                 <ul class="nav navbar-right panel_toolbox">
-
+                                    <li class="dropdown">
+                                        <a class="btn btn-warning btn-sm" href="<?= base_url('src/format/format_data.xlsx') ?>" download style="font-size: 12px;padding: 5px 10px;color: white;">
+                                            Download Format Data
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <button class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#upload_modal" type="button" style="color: white;">
+                                            Upload Data
+                                        </button>
+                                    </li>
                                     <li class="dropdown">
                                         <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: white;">
                                             Input Multiple
@@ -716,7 +726,31 @@
 
     </div>
 
+    <div class="modal fade" id="upload_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Upload Financial Entry</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="upload_file_fe">
+                            <div class="col-md-12 col-sm-12  offset-md-3 mt-3">
+                                <label for="" class="form-label">File Format Data</label>
+                                <input class="form-control" type="file" name="format_data" id="format_data">
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="upload_fe()">Save</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery -->
 

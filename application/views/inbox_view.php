@@ -334,19 +334,19 @@
 											<td><a href="<?= base_url('app/memo_view/' . $data->id) ?>"><?= $data->judul ?></a></td>
 											<td><a href="<?= base_url('app/memo_view/' . $data->id) ?>"><?= date('d/m/y | H:i:s', strtotime($data->tanggal)) ?></a></td>
 											<td><?php
-													if ($this->uri->segment(2) == 'send_memo' or $this->uri->segment(2) == 'send_cari') {
-														$string = substr($data->nip_kpd, 0, -1);
-														$arr_kpd = explode(";", $string);
-														$last = $arr_kpd[0];
-														$sql = "SELECT nama FROM users WHERE nip='$last';";
-														$query = $this->db->query($sql);
-														$result = $query->row();
-														// echo $result->nama;
-														echo '<a href=' . base_url("app/memo_view/" . $data->id) . '>' . $result->nama . '</a>';
-													} else {
-														// echo $data->nama;
-														echo '<a href=' . base_url("app/memo_view/" . $data->id) . '>' . $data->nama . '</a>';
-													} ?>
+												if ($this->uri->segment(2) == 'send_memo' or $this->uri->segment(2) == 'send_cari') {
+													$string = substr($data->nip_kpd, 0, -1);
+													$arr_kpd = explode(";", $string);
+													$last = $arr_kpd[0];
+													$sql = "SELECT nama FROM users WHERE nip='$last';";
+													$query = $this->db->query($sql);
+													$result = $query->row();
+													// echo $result->nama;
+													echo '<a href=' . base_url("app/memo_view/" . $data->id) . '>' . $result->nama . '</a>';
+												} else {
+													// echo $data->nama;
+													echo '<a href=' . base_url("app/memo_view/" . $data->id) . '>' . $data->nama . '</a>';
+												} ?>
 											</td>
 										</p>
 									<?php } else { ?>
